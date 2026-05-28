@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <title> Register for the meetup </title>
+    </head>
+
+   <h1> Register for the meetup </h1>
+
+   <fieldset>
+    <legend>
+        Choose hotel room type:
+    </legend>    
+        <input type="radio" name="room-type" value="Economy(+$0)">Economy(+$0)
+        <input type="radio" name="room-type" value="Superior(+$50)">Superior(+$50)
+        <input type="radio" name="room-type" value="Penthouse(+$150)">Penthouse(+$150)
+    
+   </fieldset>
+
+   <fieldset>
+    <legend>
+        Choose classes to attend:
+    </legend>
+
+    <input type="checkbox" id="yoga" name="classes" value="Yoga (+$10)"> Yoga (+$10)
+    <input type="checkbox" id="Coffe-roasting (+$20)" name="classes" value="Coffe-roasting (+$20)"> Coffe-roasting (+$20)
+    <input type="checkbox" id="Balloon-animal-art (+$5)" name="classes" value="Balloon-animal-art (+$5)"> Balloon-animal-art (+$5)
+   </fieldset>
+
+    <p>
+    How are you getting there:
+   
+    <!-- <input type="options" > -->
+        <select name="options">
+            <option value="">--Please choose an option--</option>
+            <option value="1">Plane</option>
+            <option value="2">Bike</option>
+            <option value="3">Walk</option>
+            <option value="4">Bus</option>
+            <option value="5">Train</option>
+            <option value="6">Jet pack</option>
+        </select>
+     </p>     
+
+     <p>
+    Any other comments:
+    <textarea name="comments" rows="12" cols="60" style="border-radius: 5px;"
+    ></textarea>
+     </p>
+
+     <button type="submit">Continue to payment</button>
+</html>
