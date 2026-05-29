@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Profile</title>
+    <style>
+        *{
+            border:0;
+            margin:0;
+            padding:0;
+        }
+        body{
+            background-color:#f7deda;
+
+        }
+        header{
+            color:black;
+            text-align:center;
+            padding:20px;
+        }
+        h4{
+            font-size:15px;
+            /* display:block; */
+        }
+        .profile, .status{
+            display:flex;
+            background-color:#e07362;
+            justify-content:center;
+            align-items:center;
+            height:40px;
+            border:none;
+            width:auto;
+            border-radius:10px;
+        }
+        img{
+            border-radius:50%;
+        }
+        .personal-id{
+            display:flex;
+            padding:12px;
+        }
+        .name{
+            padding:14px;
+        }
+        #fname{
+            padding-bottom: 22px;
+            margin-right: 12rem;
+        }
+        .status{
+            margin:20px;
+        }
+
+    </style>
+</head>
+<body>
+    <div>
+       <header>
+           <div class="profile"> 
+            <h4>Student Profile</h4>
+           </div> 
+       </header> 
+    </div>
+    <div class="personal-id">
+       <div>
+            <img src="images/Student-profilephoto.jpeg" alt="student-image.">
+       </div> 
+       <div class="name">
+            <h2 id="fname">Hasnain Saeed</h2>
+            <h6>Software Engineering-BS</h6>
+       </div>
+       <div>
+            <h6>Probability of Passing-80%</h6>
+            <h5>Good Choice</h5>
+       </div>
+       
+    </div>
+    <div class="status">
+            <h4>General</h4>
+    </div>
+</body>
+</html>
