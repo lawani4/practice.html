@@ -1,0 +1,409 @@
+    <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Research & Innovations</title>
+    <style>
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            color: #222;
+        }
+
+        .hero {
+            background-color: #6b2d8b;
+            background-image: linear-gradient(rgba(80, 20, 100, 0.75), rgba(80, 20, 100, 0.75)),
+                              url('hero-bg.jpg');
+            background-size: cover;
+            background-position: center;
+            padding: 60px 40px;
+            color: white;
+        }
+
+        .badge {
+            display: inline-block;
+            border: 1px solid white;
+            padding: 4px 12px;
+            border-radius: 999px;
+            font-size: 0.75rem;
+            margin-bottom: 20px;
+            letter-spacing: 1px;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            line-height: 1.15;
+            margin-bottom: 16px;
+            max-width: 600px;
+        }
+
+        .hero p {
+            max-width: 620px;
+            font-size: 0.95rem;
+            line-height: 1.7;
+            margin-bottom: 28px;
+            opacity: 0.9;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 12px;
+        }
+
+        .btn-outline {
+            display: inline-block;
+            border: 1.5px solid white;
+            padding: 10px 20px;
+            border-radius: 999px;
+            color: white;
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+
+        .btn-outline:hover {
+            background-color: white;
+            color: #6b2d8b;
+        }
+
+        .stats-bar {
+            background-color: #5a2070;
+            display: flex;
+            justify-content: center;
+            gap: 0;
+            padding: 30px 40px;
+        }
+
+        .stat {
+            flex: 1;
+            text-align: center;
+            color: white;
+            border-right: 1px solid rgba(255,255,255,0.3);
+            padding: 0 30px;
+        }
+
+        .stat:last-child {
+            border-right: none;
+        }
+
+        .stat strong {
+            display: block;
+            font-size: 2rem;
+            font-weight: 800;
+        }
+
+        .stat span {
+            font-size: 0.85rem;
+            opacity: 0.85;
+        }
+
+        .quick-actions {
+            padding: 50px 40px;
+            text-align: center;
+            background-color: #fff;
+        }
+
+        .quick-actions h2 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 28px;
+        }
+
+        .actions-row {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        .action-card {
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            padding: 24px 20px;
+            width: 130px;
+            text-align: center;
+            cursor: pointer;
+            transition: box-shadow 0.2s;
+        }
+
+        .action-card:hover {
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        .action-card .icon {
+            font-size: 1.6rem;
+            margin-bottom: 10px;
+            color: #9b4fc4;
+        }
+
+        .action-card p {
+            font-size: 0.82rem;
+            color: #9b4fc4;
+            font-weight: 500;
+        }
+
+        .faculties {
+            padding: 50px 40px;
+            background-color: #fafafa;
+        }
+
+        .faculties-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            margin-bottom: 24px;
+        }
+
+        .our-researchers {
+            display: inline-block;
+            color: #9b4fc4;
+            font-size: 0.82rem;
+            border: 1px solid #9b4fc4;
+            padding: 3px 10px;
+            border-radius: 999px;
+            margin-bottom: 8px;
+        }
+
+        .faculties h2 {
+            font-size: 1.8rem;
+            font-weight: 800;
+        }
+
+        .view-all {
+            color: #9b4fc4;
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+
+        .view-all:hover { text-decoration: underline; }
+
+        .faculty-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .faculty-card {
+            background-color: white;
+            border: 1px solid #eee;
+            border-radius: 12px;
+            padding: 20px;
+        }
+
+        .faculty-top {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            margin-bottom: 14px;
+        }
+
+        .faculty-top img {
+            width: 52px;
+            height: 52px;
+            border-radius: 50%;
+            object-fit: cover;
+            background-color: #ccc;
+        }
+
+        .faculty-top h3 {
+            font-size: 1rem;
+            font-weight: 700;
+            margin-bottom: 2px;
+        }
+
+        .faculty-top p {
+            font-size: 0.82rem;
+            color: #777;
+        }
+
+        .faculty-card > p {
+            font-size: 0.88rem;
+            color: #444;
+            line-height: 1.6;
+            margin-bottom: 14px;
+        }
+
+        .tags {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-bottom: 14px;
+        }
+
+        .tag {
+            background-color: #f0f0f0;
+            border-radius: 999px;
+            padding: 3px 10px;
+            font-size: 0.75rem;
+            color: #555;
+        }
+
+        .faculty-links {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.85rem;
+        }
+
+        .faculty-links a {
+            color: #9b4fc4;
+            text-decoration: none;
+        }
+
+        .faculty-links a:hover { text-decoration: underline; }
+
+    </style>
+</head>
+<body>
+
+    <div class="hero">
+        <div class="badge">RESEARCH & INNOVATIONS</div>
+        <h1>Knowledge built for Nigeria and the world</h1>
+        <p>AUL's research mission is to generate knowledge that solves real problems — from public health and governance to technology and sustainable development. Every paper published, every researcher profiled, every dataset deposited advances both academic knowledge and Nigeria's standing in global scholarship.</p>
+        <div class="hero-buttons">
+            <a href="#" class="btn-outline">Browse the Repository →</a>
+            <a href="#" class="btn-outline">Meet our Researchers</a>
+        </div>
+    </div>
+
+    <div class="stats-bar">
+        <div class="stat">
+            <strong>45+</strong>
+            <span>Academic Staff</span>
+        </div>
+        <div class="stat">
+            <strong>120+</strong>
+            <span>Publications</span>
+        </div>
+        <div class="stat">
+            <strong>8</strong>
+            <span>Research Areas</span>
+        </div>
+        <div class="stat">
+            <strong>20+</strong>
+            <span>Open Access Papers</span>
+        </div>
+    </div>
+
+    <div class="quick-actions">
+        <h2>Quick Actions</h2>
+        <div class="actions-row">
+            <div class="action-card">
+                <div class="icon">🎓</div>
+                <p>Staff Profiles</p>
+            </div>
+            <div class="action-card">
+                <div class="icon">📖</div>
+                <p>Publications</p>
+            </div>
+            <div class="action-card">
+                <div class="icon">👥</div>
+                <p>Research Centres</p>
+            </div>
+            <div class="action-card">
+                <div class="icon"></div>
+                <p>Open Access</p>
+            </div>
+            <div class="action-card">
+                <div class="icon">🤝</div>
+                <p>Partnerships</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="faculties">
+        <div class="faculties-header">
+            <div>
+                <span class="our-researchers">Our researchers</span>
+                <h2>Featured Faculties</h2>
+            </div>
+            <a href="#" class="view-all">View all staff profiles →</a>
+        </div>
+
+        <div class="faculty-grid">
+
+            <div class="faculty-card">
+                <div class="faculty-top">
+                    <img src="prof1.jpg" alt="Prof. Adewale Okonkwo">
+                    <div>
+                        <h3>Prof. Adewale Okonkwo</h3>
+                        <p>Professor of Computer Science</p>
+                    </div>
+                </div>
+                <p>Artificial intelligence, machine learning and data-driven solutions for public health challenges in sub-Saharan Africa.</p>
+                <div class="tags">
+                    <span class="tag">Biology</span>
+                    <span class="tag">Sciences</span>
+                    <span class="tag">Physics</span>
+                </div>
+                <div class="faculty-links">
+                    <a href="#">Google scholar </a>
+                    <a href="#">View Profile </a>
+                </div>
+            </div>
+
+            <div class="faculty-card">
+                <div class="faculty-top">
+                    <img src="prof2.jpg" alt="Dr. Blessing Nwosu">
+                    <div>
+                        <h3>Dr. Blessing Nwosu</h3>
+                        <p>Senior Lecturer in Law</p>
+                    </div>
+                </div>
+                <p>International human rights law, constitutional governance and access to justice in post-colonial states.</p>
+                <div class="tags">
+                    <span class="tag">Law & Governance</span>
+                    <span class="tag">Human Rights</span>
+                    <span class="tag">Constitutional law</span>
+                </div>
+                <div class="faculty-links">
+                    <a href="#">Google scholar </a>
+                    <a href="#">View Profile </a>
+                </div>
+            </div>
+
+            <div class="faculty-card">
+                <div class="faculty-top">
+                    <img src="prof3.jpg" alt="Dr. Funmilayo Adeyemi">
+                    <div>
+                        <h3>Dr. Funmilayo Adeyemi</h3>
+                        <p>Lecturer in Economics</p>
+                    </div>
+                </div>
+                <p>Development economics, micro-enterprise finance and economic empowerment of women in Lagos State.</p>
+                <div class="tags">
+                    <span class="tag">Economics</span>
+                    <span class="tag">Development</span>
+                </div>
+                <div class="faculty-links">
+                    <a href="#">Google scholar </a>
+                    <a href="#">View Profile </a>
+                </div>
+            </div>
+
+            <div class="faculty-card">
+                <div class="faculty-top">
+                    <img src="prof1.jpg" alt="Prof. Adewale Okonkwo">
+                    <div>
+                        <h3>Prof. Adewale Okonkwo</h3>
+                        <p>Professor of Computer Science</p>
+                    </div>
+                </div>
+                <p>Artificial intelligence, machine learning and data-driven solutions for public health challenges in sub-Saharan Africa.</p>
+                <div class="tags">
+                    <span class="tag">Biology</span>
+                    <span class="tag">Sciences</span>
+                    <span class="tag">Physics</span>
+                </div>
+                <div class="faculty-links">
+                    <a href="#">Google scholar </a>
+                    <a href="#">View Profile </a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</body>
+</html>
