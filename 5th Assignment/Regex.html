@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Student Sign-up</title>
+<style>
+  :root {
+    --ink: #1c2b24;
+    --paper: #f6f4ee;
+    --card: #ffffff;
+    --moss: #2f6b4f;
+    --moss-dark: #234f3a;
+    --line: #dcd7c9;
+    --error: #b3402a;
+    --error-bg: #fbeae6;
+    --ok: #2f6b4f;
+    --muted: #6b6a63;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    min-height: 100vh;
+    background: var(--paper);
+    font-family: "Iowan Old Style", "Palatino Linotype", Georgia, serif;
+    color: var(--ink);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 20px;
+  }
+
+  .wrap {
+    width: 100%;
+    max-width: 420px;
+  }
+
+  .eyebrow {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-size: 13px;
+    color: var(--muted);
+    margin-bottom: 6px;
+  }
+
+  h1 {
+    font-size: 30px;
+    font-weight: 500;
+    margin: 0 0 28px;
+    line-height: 1.25;
+    border-bottom: 1px solid var(--line);
+    padding-bottom: 20px;
+  }
+
+  .card {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    padding: 32px;
+  }
+
+  label {
+    display: block;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-size: 13px;
+    color: var(--ink);
+    margin-bottom: 6px;
+  }
+
+  .field {
+    margin-bottom: 22px;
+  }
+
+  input[type="email"],
+  input[type="password"],
+  input[type="text"] {
+    width: 100%;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-size: 15px;
+    padding: 11px 12px;
+    border: 1px solid #b9b6a8;
+    border-radius: 3px;
+    background: #fffefb;
+    color: var(--ink);
+    outline: none;
+    transition: border-color 0.15s ease;
+  }
+
+  input:focus {
+    border-color: var(--moss);
+    box-shadow: 0 0 0 3px rgba(47, 107, 79, 0.12);
+  }
+
+  input.invalid {
+    border-color: var(--error);
+  }
+
+  input.invalid:focus {
+    box-shadow: 0 0 0 3px rgba(179, 64, 42, 0.12);
+  }
+
+  .msg {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-size: 12.5px;
+    margin-top: 6px;
+    min-height: 16px;
+    color: var(--error);
+  }
+
+  .msg.ok {
+    color: var(--ok);
+  }
+
+  .rules {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-size: 12.5px;
+    margin-top: 8px;
+    padding: 0;
+    list-style: none;
+    display: grid;
+    gap: 4px;
+  }
+
+  .rules li {
+    color: var(--muted);
+    display: flex;
+    align-items: center;
+    gap: 7px;
+  }
+
+  .rules li::before {
+    content: "";
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #c9c5b6;
+    flex: none;
+  }
+
+  .rules li.met {
+    color: var(--ok);
+  }
+
+  .rules li.met::before {
+    background: var(--ok);
+  }
+
+  button {
+    width: 100%;
+    margin-top: 6px;
+    padding: 13px;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    color: #fff;
+    background: var(--moss);
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: background 0.15s ease;
+  }
+
+  button:hover {
+    background: var(--moss-dark);
+  }
+
+  button:disabled {
+    background: #b9b6a8;
+    cursor: not-allowed;
+  }
+
+  .banner {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-size: 14px;
+    padding: 12px 14px;
+    border-radius: 3px;
+    margin-bottom: 20px;
+    display: none;
+  }
+
+  .banner.show {
+    display: block;
+  }
+
+  .banner.success {
+    background: #e9f2ec;
+    color: var(--moss-dark);
+    border: 1px solid #b9d6c4;
+  }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <div class="eyebrow">Campus Portal</div>
+  <h1>Create your student account</h1>
+
+  <div class="card">
+    <div class="banner success" id="successBanner">Account details look good — you're all set.</div>
+
+    <form id="signupForm" novalidate>
+      <div class="field">
+        <label for="email">Student email</label>
+        <input type="text" id="email" name="email" placeholder="jane.doe@university.edu" autocomplete="email">
+        <div class="msg" id="emailMsg"></div>
+      </div>
+
+      <div class="field">
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password" placeholder="Enter a password" autocomplete="new-password">
+        <ul class="rules" id="rules">
+          <li id="ruleLen">At least 8 characters</li>
+          <li id="ruleUpper">One uppercase letter</li>
+          <li id="ruleNumber">One number</li>
+          <li id="ruleSpecial">One special symbol (!@#$%^&* etc.)</li>
+        </ul>
+      </div>
+
+      <div class="field">
+        <label for="confirm">Confirm password</label>
+        <input type="password" id="confirm" name="confirm" placeholder="Re-enter your password" autocomplete="new-password">
+        <div class="msg" id="confirmMsg"></div>
+      </div>
+
+      <button type="submit" id="submitBtn">Create account</button>
+    </form>
+  </div>
+</div>
+
+<script>
+  // --- Regex patterns ---
+  // Email: local part + @ + domain + . + TLD, basic student-email-friendly pattern
+  const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+
+  // Password sub-checks (checked individually so we can show live feedback)
+  const passwordChecks = {
+    len: /.{8,}/,
+    upper: /[A-Z]/,
+    number: /[0-9]/,
+    special: /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~`]/
+  };
+
+  const emailInput = document.getElementById('email');
+  const emailMsg = document.getElementById('emailMsg');
+
+  const passwordInput = document.getElementById('password');
+  const confirmInput = document.getElementById('confirm');
+  const confirmMsg = document.getElementById('confirmMsg');
+
+  const ruleLen = document.getElementById('ruleLen');
+  const ruleUpper = document.getElementById('ruleUpper');
+  const ruleNumber = document.getElementById('ruleNumber');
+  const ruleSpecial = document.getElementById('ruleSpecial');
+
+  const form = document.getElementById('signupForm');
+  const submitBtn = document.getElementById('submitBtn');
+  const successBanner = document.getElementById('successBanner');
+
+  function validateEmail() {
+    const value = emailInput.value.trim();
+    if (value === '') {
+      setState(emailInput, emailMsg, '');
+      return false;
+    }
+    if (emailPattern.test(value)) {
+      setState(emailInput, emailMsg, 'Looks good.', true);
+      return true;
+    } else {
+      setState(emailInput, emailMsg, 'Enter a valid email address, e.g. name@school.edu');
+      return false;
+    }
+  }
+
+  function validatePassword() {
+    const value = passwordInput.value;
+
+    const okLen = passwordChecks.len.test(value);
+    const okUpper = passwordChecks.upper.test(value);
+    const okNumber = passwordChecks.number.test(value);
+    const okSpecial = passwordChecks.special.test(value);
+
+    toggleRule(ruleLen, okLen);
+    toggleRule(ruleUpper, okUpper);
+    toggleRule(ruleNumber, okNumber);
+    toggleRule(ruleSpecial, okSpecial);
+
+    passwordInput.classList.toggle('invalid', value.length > 0 && !(okLen && okUpper && okNumber && okSpecial));
+
+    return okLen && okUpper && okNumber && okSpecial;
+  }
+
+  function validateConfirm() {
+    if (confirmInput.value === '') {
+      setState(confirmInput, confirmMsg, '');
+      return false;
+    }
+    if (confirmInput.value === passwordInput.value) {
+      setState(confirmInput, confirmMsg, 'Passwords match.', true);
+      return true;
+    } else {
+      setState(confirmInput, confirmMsg, 'Passwords do not match.');
+      return false;
+    }
+  }
+
+  function toggleRule(el, met) {
+    el.classList.toggle('met', met);
+  }
+
+  function setState(inputEl, msgEl, text, ok) {
+    msgEl.textContent = text;
+    msgEl.classList.toggle('ok', !!ok);
+    inputEl.classList.toggle('invalid', text !== '' && !ok);
+  }
+
+  emailInput.addEventListener('input', validateEmail);
+  passwordInput.addEventListener('input', () => {
+    validatePassword();
+    if (confirmInput.value) validateConfirm();
+  });
+  confirmInput.addEventListener('input', validateConfirm);
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    successBanner.classList.remove('show');
+
+    const emailOk = validateEmail();
+    const passOk = validatePassword();
+    const confirmOk = validateConfirm();
+
+    if (!emailOk) emailInput.classList.add('invalid');
+    if (!confirmOk) confirmInput.classList.add('invalid');
+
+    if (emailOk && passOk && confirmOk) {
+      successBanner.classList.add('show');
+      form.reset();
+      [ruleLen, ruleUpper, ruleNumber, ruleSpecial].forEach(r => r.classList.remove('met'));
+      emailMsg.textContent = '';
+      confirmMsg.textContent = '';
+      passwordInput.classList.remove('invalid');
+      emailInput.classList.remove('invalid');
+      confirmInput.classList.remove('invalid');
+    }
+  });
+</script>
+
+</body>
+</html>
